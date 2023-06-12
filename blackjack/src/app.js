@@ -1,8 +1,16 @@
 import { LitElement, html, css } from 'lit';
+import { Service} from './services';
+import { servicio } from './services';
+
 
 export class AppBlackjack extends LitElement {
 
+   constructor(){
+    super();
 
+    this.servicio = servicio;
+
+   }
     
 
     render() {
@@ -23,11 +31,16 @@ export class AppBlackjack extends LitElement {
 
     nuevoJuego(){
         console.log("se esta ejecutando un nuevio juego ");
+        this.servicio.inicializarJuego();
+        
     }
 
     pedirCarta(){
         console.log("se esta pidiendo una nueva carta ");
-
+        let cartaPedida = this.servicio.pedirCarta();
+        console.log("carta extraida",cartaPedida);
+        let valorCarta = this.servicio.valorCarta(cartaPedida);
+        console.log("valorCarta",valorCarta);
     }
 
     detenerTurno(){
